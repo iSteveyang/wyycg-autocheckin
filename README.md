@@ -18,7 +18,9 @@
 ## 目录
 
 - [使用方法](#使用方法)
+- [保活策略](#保活策略)
 - [变量获取](#变量内容获取)
+- [脚本更新](#脚本更新)
 - [Q&A](#qa)
 
 ## 使用方法
@@ -30,6 +32,8 @@
 ![](https://upimage.alexhchu.com/2020/11/22/e9b4bcf8e6a1d.png)
 
 2、进入设置，设置变量`cookie`和`teleid` `teletoken` `SCKEY`（这三个可选）
+
+**请注意：你无需在仓库的secrets内设置名为`GITHUB_TOKEN`的变量，该名称本身就是指定为自己账户下名为`GITHUB_TOKEN`的密钥，如果你在仓库的secrets内设置将会被Github提示无效**
 
 **如果使用多用户，多个cookie请使用`#`分隔**
 
@@ -53,9 +57,29 @@
 
 ![](https://upimage.alexhchu.com/2020/11/22/457403bb7d3bb.png)
 
+除了点STAR进行启动以外，你也可以点击右边那个白白的按钮来启动
+
+![](https://upimage.alexhchu.com/2021/01/09/49ef24f93434e.png)
+
 **只要测试通过就是没问题，如果你配置了TELEGRAM还会收到你的BOT给你发送的消息**
 
-测试通过后，你就可以放着它不用管了，它会自己运行的~
+测试通过后，你还需要创建保活需要用到的Github Token，详情可以看[保活策略](#保活策略)这一节（其实就在下面撒）
+
+## 保活策略
+
+因为Github Action在仓库60天内没有任何Push的时候会禁用你的Action，这时候我们就要进行保活
+
+保活Action已经写好了，但是这里有一些步骤是需要你进行的，请看下面的图片生成GITHUB_TOKEN以便让脚本造成的更改能够正常推送入你的仓库
+
+![](https://upimage.alexhchu.com/2020/12/27/dce7070ae625c.png)
+
+![](https://upimage.alexhchu.com/2020/12/27/f82f6505503ed.png)
+
+![](https://upimage.alexhchu.com/2020/12/27/9cff0436399b7.png)
+
+到这里勾选完以后点绿绿的Generate token就可以了
+
+**请注意：你无需在仓库的secrets内设置名为`GITHUB_TOKEN`的变量，该名称本身就是指定为自己账户下名为`GITHUB_TOKEN`的密钥，如果你在仓库的secrets内设置将会被Github提示无效**
 
 ## 变量内容获取
 
@@ -87,7 +111,57 @@
 
 ![](https://upimage.alexhchu.com/2020/12/05/dff25704763d8.png)
 
+## 脚本更新
+
+### 自动更新
+
+[点击这里](https://github.com/apps/pull)安装插件，可以选择所有仓库，也可以指选择你Fork的仓库（当然至少要选择fork的仓库对吧，要不然怎么更新），然后不管它就好了
+
+详细步骤可以看下面的图片
+
+![](https://upimage.alexhchu.com/2020/12/26/4c0d02795a38c.png)
+
+![](https://upimage.alexhchu.com/2020/12/26/1800e5609a365.png)
+
+![](https://upimage.alexhchu.com/2020/12/26/29ffcfd4fd8b0.png)
+
+如果你完成了上面的步骤，就可以不管它了，自动更新会自己进行（除非有`Merge Conflict`）
+
+### 手动更新
+
+在自己的仓库中，创建一个pull requests，上游（右边的选择本仓库（GamerNoTitle/wyycg-autocheckin）的master分支，左边选择自己的仓库，然后创建PR并Merge即可！
+
+具体可以看下面的图片
+
+![](https://upimage.alexhchu.com/2020/12/26/660bffa186f57.png)
+
+![](https://upimage.alexhchu.com/2020/12/26/b90770108e301.png)
+
+![](https://upimage.alexhchu.com/2020/12/26/da988092d8556.png)
+
+![](https://upimage.alexhchu.com/2020/12/26/444ca5bc88093.png)
+
+![](https://upimage.alexhchu.com/2020/12/26/db022886a1c5f.png)
+
 ## Q&A
+
+## 返回值400并附带一串不知道什么鬼的字符串
+
+例子：
+```
+    感谢使用来自GamerNoTitle的网易云游戏自动签到脚本！
+    今日签到结果如下：
+    成功数量：0/1
+    失败数量：1/1
+    具体情况如下：
+    第1个账号签到失败，回显状态码为400，具体错误信息如下：GL8B/hH+v9cYGsm/Ag8PAAwBAr/XztPNzsm/Ag8PChAEv9e/EhACD70QBgQLvREMAf4Wv8m/Ag8PChAEAAu/17/5EtID0tD5EtLWz9b5EtIBA8/5EtT/1AL5EtLP0M2/Gqc=
+    GamerNoTitle: https://bili33.top
+    网易云游戏自动签到脚本: https://github.com/GamerNoTitle/wyycg-autocheckin
+```
+
+首先你需要确认你当天是否已经签到过了才运行的脚本，如果确实先签了到再运行脚本，网易确实会返回400
+
+目前也只发现这种情况会返回400，如果有其他情况你可以在issue跟我提出
 
 ## 错误代码
 
@@ -114,3 +188,9 @@
 `HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)`
 
 出现这个错误，那就是Telegram的问题，Github连接不上Telegram服务器（大半是TG服务器炸了）~~（复制粘贴大法）~~
+
+---
+
+## 历史STAR
+
+![](https://starchart.cc/GamerNoTitle/wyycg-autocheckin.svg)
