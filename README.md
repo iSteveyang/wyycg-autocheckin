@@ -31,7 +31,7 @@
 
 ![](https://upimage.alexhchu.com/2020/11/22/e9b4bcf8e6a1d.png)
 
-2、进入设置，设置变量`cookie`和`teleid` `teletoken` `SCKEY`（这三个可选）
+2、进入设置，设置变量`cookie`和`teleid` `teletoken` `SCKEY` `QQKEY` `PPKEY`（这五个可选，但是`teleid`和`teletoken`要用的话就得两个都要配置！）
 
 **请注意：你无需在仓库的secrets内设置名为`GITHUB_TOKEN`的变量，该名称本身就是指定为自己账户下名为`GITHUB_TOKEN`的密钥，如果你在仓库的secrets内设置将会被Github提示无效**
 
@@ -110,6 +110,22 @@
 访问[ServerChan官网](http://sc.ftqq.com/?c=code)，用你的Github账户登录，在`发送信息`可以看到你的SCKEY
 
 ![](https://upimage.alexhchu.com/2020/12/05/dff25704763d8.png)
+
+### QQKEY获取
+
+**不推荐使用此推送方式，因为其极不稳定！使用该推送方式无法收到QQ提醒的请不要开issue说这个问题，因为这是该服务的问题不是脚本问题**
+
+访问[CoolPush官网](https://cp.xuthus.cc/)，使用任一方式登录，在`调用代码Skey`可以看到你的KEY
+
+![](https://upimage.alexhchu.com/2021/01/25/dbfcd0cee03be.png)
+
+### PPKEY获取
+
+**此平台是ServerChan的替代平台，因为ServerChan发了个[通知](https://mp.weixin.qq.com/s/L4rONhZN2OCQ80cHxPAY0Q)，所以我就先把这个给更了
+
+访问[PushPlus官网](http://pushplus.hxtrip.com/)，使用微信登录，直接在[一对一推送](http://pushplus.hxtrip.com/message)复制自己的Token填入变量即可！
+
+![](https://upimage.alexhchu.com/2021/02/08/c8d1898ca8de5.png)
 
 ## 脚本更新
 
@@ -194,3 +210,7 @@
 ## 历史STAR
 
 ![](https://starchart.cc/GamerNoTitle/wyycg-autocheckin.svg)
+
+## 免责声明
+
+使用本脚本造成的封号或任何违反相关法律法规造成的任何责任，由使用者自行承担，开发者不担负任何责任！
