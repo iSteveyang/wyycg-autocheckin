@@ -1,5 +1,9 @@
 # 网易云游戏自动签到
 
+请注意：关于LICENSE，在Apache-2.0的基础上增加一条：**禁止上传到CSDN等网站盈利，禁止放在某宝某鱼等平台贩卖**，否则官方找上门就**删库跑路**！
+
+**本脚本从[@GamerNoTitle](https://github.com/GamerNoTitle)出Fork而来，源仓库已于2021.5.19删除（我也不知道为什么本仓库会成为源仓库，理论上应该所有人都是源仓库才对），具体请参照[关于得知Github查封Action仓库的信息后我自行删除脚本的这档事 #2](https://github.com/GamerNoTitle/GamerNoTitle/discussions/2)**
+
 本脚本通过使用Github Action来进行[网易云游戏](https://cloudgame.webapp.163.com/newer.html?invite_code=2ZLPWY)签到操作，让你能够天天白嫖网易云游戏时长和云电脑！
 
 喜欢就给我点个STAR吧！
@@ -107,9 +111,9 @@
 
 ### SCKEY获取
 
-访问[ServerChan官网](http://sc.ftqq.com/?c=code)，用你的Github账户登录，在`发送信息`可以看到你的SCKEY
+访问[ServerChanTurbo官网](https://sct.ftqq.com/)，并用你的微信扫码登陆，获取推送用的KEY即可（因为我没有使用这个推送方法所以没有图）
 
-![](https://upimage.alexhchu.com/2020/12/05/dff25704763d8.png)
+**请各位使用了SC推送服务的小伙伴尽快迁移到SCT，原服务将会在四月底下线**
 
 ### QQKEY获取
 
@@ -190,6 +194,29 @@
 #### Not found
 
 请检查自己的Telebot Token是否正确！
+
+### telepot.exception.UnauthorizedError
+
+该错误显示如下：
+
+```
+Traceback (most recent call last):
+File "main.py", line 185, in
+send(teleid, teleinfomsg)
+File "main.py", line 82, in send
+bot.sendMessage(id, message, parse_mode=None, disable_web_page_preview=None, disable_notification=None,
+File "/opt/hostedtoolcache/Python/3.8.9/x64/lib/python3.8/site-packages/telepot/init.py", line 513, in sendMessage
+return self._api_request('sendMessage', _rectify(p))
+File "/opt/hostedtoolcache/Python/3.8.9/x64/lib/python3.8/site-packages/telepot/init.py", line 491, in _api_request
+return api.request((self._token, method, params, files), **kwargs)
+File "/opt/hostedtoolcache/Python/3.8.9/x64/lib/python3.8/site-packages/telepot/api.py", line 155, in request
+return _parse(r)
+File "/opt/hostedtoolcache/Python/3.8.9/x64/lib/python3.8/site-packages/telepot/api.py", line 147, in _parse
+raise e(description, error_code, data)
+telepot.exception.UnauthorizedError: ('Unauthorized', 401, {'ok': False, 'error_code': 401, 'description': 'Unauthorized'})
+```
+
+解决方法：检查自己的Bot的Token是不是正确的！
 
 ### urllib3.exceptions
 
